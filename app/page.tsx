@@ -294,77 +294,203 @@ export default async function Home() {
           <LogoutButton />
         </header>
 
-        {/* NAVIGATION */}
-        <nav className="mt-8 grid gap-4 sm:grid-cols-3">
-          <Link
-            href="/profiles"
-            className="group rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-2xl">
-                👥
-              </span>
+        {/* ADMIN TOOLS */}
+        <section className="mt-8">
+          <div>
+            <p className="text-sm font-medium text-gray-500">
+              Admin tools
+            </p>
 
-              <span className="text-gray-300 transition group-hover:translate-x-1">
-                →
-              </span>
-            </div>
-
-            <h2 className="mt-4 font-bold">
-              Profiles
+            <h2 className="mt-1 text-2xl font-bold">
+              Manage the platform
             </h2>
 
-            <p className="mt-1 text-sm text-gray-500">
-              View all registered profiles.
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-500">
+              Everything needed to manage content, prompting, AI configuration,
+              and access controls.
             </p>
-          </Link>
+          </div>
 
-          <Link
-            href="/content"
-            className="group rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-2xl">
-                🤖
-              </span>
+          <div className="mt-5 grid gap-5 md:grid-cols-2">
+            {/* CONTENT & USERS */}
+            <div className="rounded-2xl bg-white p-6 shadow-sm">
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-xl">
+                  👥
+                </div>
 
-              <span className="text-gray-300 transition group-hover:translate-x-1">
-                →
-              </span>
+                <div>
+                  <h3 className="font-bold">
+                    Content & Users
+                  </h3>
+
+                  <p className="mt-1 text-sm leading-6 text-gray-500">
+                    Manage users, posts, uploaded media, and community activity.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 grid gap-2 sm:grid-cols-2">
+                <Link
+                  href="/profiles"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  Users
+                </Link>
+
+                <Link
+                  href="/content"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  AI Content
+                </Link>
+
+                <Link
+                  href="/images"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  Images
+                </Link>
+
+                <Link
+                  href="/votes"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  Votes
+                </Link>
+              </div>
             </div>
 
-            <h2 className="mt-4 font-bold">
-              AI Content
-            </h2>
+            {/* PROMPTING */}
+            <div className="rounded-2xl bg-white p-6 shadow-sm">
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-50 text-xl">
+                  🧠
+                </div>
 
-            <p className="mt-1 text-sm text-gray-500">
-              Create, edit, and delete posts.
-            </p>
-          </Link>
+                <div>
+                  <h3 className="font-bold">
+                    Prompting
+                  </h3>
 
-          <Link
-            href="/votes"
-            className="group rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-2xl">
-                🔥
-              </span>
+                  <p className="mt-1 text-sm leading-6 text-gray-500">
+                    Inspect prompt workflows, requests, terminology, and
+                    generation examples.
+                  </p>
+                </div>
+              </div>
 
-              <span className="text-gray-300 transition group-hover:translate-x-1">
-                →
-              </span>
+              <div className="mt-5 grid gap-2 sm:grid-cols-2">
+                <Link
+                  href="/prompt-chains"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  Prompt Chains
+                </Link>
+
+                <Link
+                  href="/terms"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  Terms
+                </Link>
+
+                <Link
+                  href="/generation-requests"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  Generation Requests
+                </Link>
+
+                <Link
+                  href="/ai-generation-examples"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  AI Examples
+                </Link>
+              </div>
             </div>
 
-            <h2 className="mt-4 font-bold">
-              Votes
-            </h2>
+            {/* MODELS */}
+            <div className="rounded-2xl bg-white p-6 shadow-sm">
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-xl">
+                  🤖
+                </div>
 
-            <p className="mt-1 text-sm text-gray-500">
-              Review community ratings.
-            </p>
-          </Link>
-        </nav>
+                <div>
+                  <h3 className="font-bold">
+                    Models & Responses
+                  </h3>
+
+                  <p className="mt-1 text-sm leading-6 text-gray-500">
+                    Configure AI providers and models, and inspect saved LLM
+                    responses.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 grid gap-2 sm:grid-cols-3">
+                <Link
+                  href="/llm-providers"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  Providers
+                </Link>
+
+                <Link
+                  href="/llm-models"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  Models
+                </Link>
+
+                <Link
+                  href="/llm-responses"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  Responses
+                </Link>
+              </div>
+            </div>
+
+            {/* ACCESS CONTROL */}
+            <div className="rounded-2xl bg-white p-6 shadow-sm">
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-xl">
+                  🔐
+                </div>
+
+                <div>
+                  <h3 className="font-bold">
+                    Access Control
+                  </h3>
+
+                  <p className="mt-1 text-sm leading-6 text-gray-500">
+                    Manage signup domains and individual whitelisted email
+                    addresses.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 grid gap-2 sm:grid-cols-2">
+                <Link
+                  href="/allowed-signup-domains"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  Allowed Domains
+                </Link>
+
+                <Link
+                  href="/whitelisted-emails"
+                  className="rounded-xl bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                >
+                  Whitelisted Emails
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* TOP STATS */}
         <section className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
@@ -457,9 +583,7 @@ export default async function Home() {
                   }}
                 />
 
-                <div
-                  className="flex-1 bg-red-400"
-                />
+                <div className="flex-1 bg-red-400" />
               </div>
 
               <p className="mt-4 text-sm text-gray-500">
