@@ -21,13 +21,57 @@ export default function DeletePost({
 
     const supabase = createClient();
 
-    const { error } = await supabase
+    // 1. Load the generation first so we know which image to remove.
+    const { data: generation, error: generationError } =
+      await supabase
+        .from("generations")
+        .select("id, image_url")
+        .eq("id", generationId)
+        .single();
+
+    if (generationError) {
+      setMessage(generationError.message);
+      setDeleting(false);
+      return;
+    }
+
+    // 2. If this generation has an image stored in the "bites" bucket,
+    // remove that file from Supabase Storage.
+    if (generation?.image_url) {
+      const marker = "/storage/v1/object/public/bites/";
+      const markerIndex = generation.image_url.indexOf(marker);
+
+      if (markerIndex !== -1) {
+        const imagePath = decodeURIComponent(
+          generation.image_url.slice(
+            markerIndex + marker.length
+          )
+        );
+
+        const { error: storageError } =
+          await supabase.storage
+            .from("bites")
+            .remove([imagePath]);
+
+        if (storageError) {
+          setMessage(
+            `Could not delete image from storage: ${storageError.message}`
+          );
+          setDeleting(false);
+          return;
+        }
+      }
+    }
+
+    // 3. Delete the generation.
+    // Existing cascade rules remove its caption and votes.
+    const { error: deleteError } = await supabase
       .from("generations")
       .delete()
       .eq("id", generationId);
 
-    if (error) {
-      setMessage(error.message);
+    if (deleteError) {
+      setMessage(deleteError.message);
       setDeleting(false);
       return;
     }
@@ -53,8 +97,8 @@ export default function DeletePost({
       </p>
 
       <p className="mt-1 text-xs leading-5 text-red-700">
-        This permanently removes the submission, its AI caption,
-        and all votes attached to it.
+        This permanently removes the submission, its uploaded image,
+        its AI caption, and all votes attached to it.
       </p>
 
       <div className="mt-3 flex flex-wrap gap-2">
